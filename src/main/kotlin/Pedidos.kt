@@ -1,6 +1,6 @@
 import java.util.Date
-
-class Pedidos(var productos: Productos, var pago: Pagos, var cliente: Cliente){
+import Cliente as cliente
+class Pedidos(var productos: Productos, var pago: Pagos){
 
     private val id: String = ""
     private val infoPedido = mutableListOf<String>()
