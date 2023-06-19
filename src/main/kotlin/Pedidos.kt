@@ -1,12 +1,11 @@
 import java.util.Date
 import Cliente as cliente
-class Pedidos(var productos: Productos, var pago: Pagos){
+class Pedidos(var productos: Productos, var pago: Pagos) {
 
     private val id: String = ""
     private val infoPedido = mutableListOf<String>()
     private var fechaPedido: Date = Date()
     private var estado = "Enviado" // este valor podrá ser "pendiete", "pagado", "procesado", "enviado", "entregado".
-
 
     fun crearPedido(): MutableList<String> {
         pago.pago = false
@@ -20,8 +19,9 @@ class Pedidos(var productos: Productos, var pago: Pagos){
         cliente.numero = 635677889
         fechaPedido = Date(2022, 12, 6, 1, 3, 23)
 
-            infoPedido.add("""
-                Referencias del pedido realizado a: ${fechaPedido}
+        infoPedido.add(
+            """
+                Referencias del pedido realizado a: $fechaPedido
                 Estado: ${estadoPedido(estado,id)}
                 
                 El producto con id: ${productos.id}
@@ -33,36 +33,49 @@ class Pedidos(var productos: Productos, var pago: Pagos){
                 Refente al cliente: ${cliente.id}
                 con nombre: ${cliente.nombre}
                 y número: ${cliente.numero}            
-            """.trimIndent())
+            """.trimIndent(),
+        )
         return infoPedido
     }
 
     fun estadoPedido(estado: String, id: String): String {
-        if (pago.pago == true){
+        if (pago.pago == true) {
             var estado = "pagado"
-            return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
+            return (
+                """Estado del pedido $id:
+                   este pedido se encuentra $estado
+                """.trimIndent()
+                )
         }
-        when (estado){
-            "pendiente" -> return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
-            "procesado" -> return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
-            "enviado" -> return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
-            "entregado" -> return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
+        when (estado) {
+            "pendiente" -> return (
+                """Estado del pedido $id:
+                   este pedido se encuentra $estado
+                """.trimIndent()
+                )
+            "procesado" -> return (
+                """Estado del pedido $id:
+                   este pedido se encuentra $estado
+                """.trimIndent()
+                )
+            "enviado" -> return (
+                """Estado del pedido $id:
+                   este pedido se encuentra $estado
+                """.trimIndent()
+                )
+            "entregado" -> return (
+                """Estado del pedido $id:
+                   este pedido se encuentra $estado
+                """.trimIndent()
+                )
         }
-        return return ("""Estado del pedido ${id}:
-                   este pedido se encuentra ${estado}
-                        """.trimIndent())
+        return return (
+            """Estado del pedido $id:
+                   este pedido se encuentra $estado
+            """.trimIndent()
+            )
     }
-    fun calcularImpuesto(precio: Int, impuesto:Int): Int {
-        return (precio*impuesto)/100
+    fun calcularImpuesto(precio: Int, impuesto: Int): Int {
+        return (precio * impuesto) / 100
     }
 }
