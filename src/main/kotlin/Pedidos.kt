@@ -1,5 +1,6 @@
 import java.util.Date
 import Cliente as cliente
+@Suppress("DEPRECATION", "SameParameterValue")
 class Pedidos(var productos: Productos, var pago: Pagos) {
 
     private val id: String = ""
@@ -32,15 +33,13 @@ class Pedidos(var productos: Productos, var pago: Pagos) {
                 
                 Refente al cliente: ${cliente.id}
                 con nombre: ${cliente.nombre}
-                y número: ${cliente.numero}            
-            """.trimIndent(),
+                y número: ${cliente.numero}""".trimIndent(),
         )
         return infoPedido
     }
 
-    fun estadoPedido(estado: String, id: String): String {
-        if (pago.pago == true) {
-            var estado = "pagado"
+    private fun estadoPedido(estado: String, id: String): String {
+        if (pago.pago) {
             return (
                 """Estado del pedido $id:
                    este pedido se encuentra $estado
@@ -69,13 +68,13 @@ class Pedidos(var productos: Productos, var pago: Pagos) {
                 """.trimIndent()
                 )
         }
-        return return (
+        return (
             """Estado del pedido $id:
                    este pedido se encuentra $estado
             """.trimIndent()
             )
     }
-    fun calcularImpuesto(precio: Int, impuesto: Int): Int {
+    private fun calcularImpuesto(precio: Int, impuesto: Int): Int {
         return (precio * impuesto) / 100
     }
 }
